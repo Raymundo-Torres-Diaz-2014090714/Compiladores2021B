@@ -1,0 +1,53 @@
+Al estar creando el ejecutable del analizador léxico me salieron varios errores, no supe como darles solución al probar los archivos tal cual de bison y flex. Seguiré intentando.
+
+In file included from proyecto.l:10:0:
+proyecto.tab.c: In function ‘yyparse’:
+proyecto.tab.c:1642:16: warning: implicit declaration of function ‘yylex’; did you mean ‘yyless’? [-Wimplicit-function-declaration]
+In file included from proyecto.l:10:0:
+proyecto.tab.c:1771:7: warning: implicit declaration of function ‘yyerror’; did you mean ‘yyerrok’? [-Wimplicit-function-declaration]
+In file included from proyecto.l:10:0:
+proyecto.y: At top level:
+proyecto.y:420:13: error: conflicting types for ‘yytext’
+ extern char yytext[];
+             ^~~~~~
+lex.yy.c:616:7: note: previous declaration of ‘yytext’ was here
+ char *yytext;
+       ^~~~~~
+In file included from proyecto.l:10:0:
+proyecto.y:423:1: warning: return type defaults to ‘int’ [-Wimplicit-int]
+ yyerror(s)
+ ^~~~~~~
+lex.yy.c: In function ‘yylex’:
+lex.yy.c:349:15: error: ‘yytext’ has an incomplete type ‘char[]’
+  (yytext_ptr) = yy_bp; \
+               ^
+lex.yy.c:887:3: note: in expansion of macro ‘YY_DO_BEFORE_ACTION’
+   YY_DO_BEFORE_ACTION;
+   ^~~~~~~~~~~~~~~~~~~
+proyecto.l:16:3: warning: implicit declaration of function ‘comment’; did you mean ‘count’? [-Wimplicit-function-declaration]
+ "/*"   { comment(); }
+   ^~~~~~~
+   count
+proyecto.l:51:19: warning: implicit declaration of function ‘check_type’ [-Wimplicit-function-declaration]
+ {L}({L}|{D})*  { count(); return(check_type()); }
+                   ^~~~~~~~~~
+lex.yy.c: In function ‘yy_get_next_buffer’:
+lex.yy.c:1630:15: error: ‘yytext’ has an incomplete type ‘char[]’
+  (yytext_ptr) = &YY_CURRENT_BUFFER_LVALUE->yy_ch_buf[0];
+               ^
+lex.yy.c: In function ‘yyunput’:
+lex.yy.c:1726:15: error: ‘yytext’ has an incomplete type ‘char[]’
+  (yytext_ptr) = yy_bp;
+               ^
+lex.yy.c: In function ‘yy_load_buffer_state’:
+lex.yy.c:1863:15: error: ‘yytext’ has an incomplete type ‘char[]’
+  (yytext_ptr) = (yy_c_buf_p) = YY_CURRENT_BUFFER_LVALUE->yy_buf_pos;
+               ^
+proyecto.l: At top level:
+proyecto.l:116:1: warning: return type defaults to ‘int’ [-Wimplicit-int]
+ yywrap()
+ ^~~~~~
+proyecto.l:122:1: warning: return type defaults to ‘int’ [-Wimplicit-int]
+ comment()
+ ^~~~~~~
+
